@@ -26,7 +26,7 @@ public class PolicyDocumentService {
 
 	    public PolicyDocument getPolicyDocumentById(Long policyDetailsId) throws ResourceNotFoundException {
 	        return policyDocumentRepository.findById(policyDetailsId)
-	                .orElseThrow(() -> new ResourceNotFoundException("PolicyDocument not found for this id :: " + policyDetailsId));
+	                .orElseThrow(() -> new ResourceNotFoundException("PolicyDocument not for this id :: " + policyDetailsId));
 	    }
    
 }
