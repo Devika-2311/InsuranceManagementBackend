@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3003", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3001", allowCredentials = "true")
 @RequestMapping("/user-policies")
 public class UserPolicyController {
 
@@ -20,22 +20,28 @@ public class UserPolicyController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<UserPolicy> createUserPolicy(@RequestBody UserPolicy userPolicy) {
+    public ResponseEntity<Object> createUserPolicy(@RequestBody UserPolicy userPolicy) {
         UserPolicy createdUserPolicy = userPolicyService.createUserPolicy(userPolicy);
-        return ResponseEntity.ok(createdUserPolicy);  // Returning the created policy
+        return ResponseEntity.ok(createdUserPolicy.getUserPolicyId());  
     }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<UserPolicy>> getPoliciesById(@PathVariable Long userId) {
         try {
-            List<UserPolicy> policies = userPolicyService.getUserPoliciesByUserId(userId);
-            if (policies.isEmpty()) {
-                throw new ResourceNotFoundException("No policies found for user id: " + userId);
-            }
-            return ResponseEntity.ok(policies);
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+			try {
+			    List<UserPolicy> policies = userPolicyService.getUserPoliciesByUserId(userId);
+			    if (policies.isEmpty()) {
+			        throw new ResourceNotFoundException("No policies found for user id: " + userId);
+			    }
+			    return ResponseEntity.ok(policies);
+			} catch (ResourceNotFoundException e) {
+			    return ResponseEntity.notFound().build();
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return null;
     }
 
     @GetMapping("/get")

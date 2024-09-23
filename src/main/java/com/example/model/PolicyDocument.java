@@ -52,9 +52,7 @@ public class PolicyDocument {
     private String vehicleType;
     private Integer driverAge;
     private String cheatSheet;
-    private LocalDate purchaseDate;
-
-    // Getters and Setters
+  
 
     public Long getPolicyDetailsId() {
         return policyDetailsId;
@@ -259,13 +257,7 @@ public class PolicyDocument {
         this.cheatSheet = cheatSheet;
     }
 
-    public LocalDate getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
+   
 
 	public PolicyDocument() {
 		super();
@@ -276,8 +268,7 @@ public class PolicyDocument {
 			Boolean anyDisease, String nomineeName, String nomineeRelation, String nomineeEmail, String nomineeProof,
 			Integer age, Double height, Double weight, Boolean smoke, Boolean alcohol, Boolean bp, Boolean diabetics,
 			String criticalDisease, String healthReport, String vehicleModelNo, String licensePlateNo,
-			Double vehicleValue, String primaryUse, String vehicleType, Integer driverAge, String cheatSheet,
-			LocalDate purchaseDate) {
+			Double vehicleValue, String primaryUse, String vehicleType, Integer driverAge, String cheatSheet) {
 		super();
 		this.policyDetailsId = policyDetailsId;
 		this.userPolicy = userPolicy;
@@ -304,7 +295,7 @@ public class PolicyDocument {
 		this.vehicleType = vehicleType;
 		this.driverAge = driverAge;
 		this.cheatSheet = cheatSheet;
-		this.purchaseDate = purchaseDate;
+		
 	}
 
 	@Override
@@ -317,6 +308,6 @@ public class PolicyDocument {
 				+ ", criticalDisease=" + criticalDisease + ", healthReport=" + healthReport + ", vehicleModelNo="
 				+ vehicleModelNo + ", licensePlateNo=" + licensePlateNo + ", vehicleValue=" + vehicleValue
 				+ ", primaryUse=" + primaryUse + ", vehicleType=" + vehicleType + ", driverAge=" + driverAge
-				+ ", cheatSheet=" + cheatSheet + ", purchaseDate=" + purchaseDate + "]";
+				+ ", cheatSheet=" + cheatSheet +"]";
 	}
 }

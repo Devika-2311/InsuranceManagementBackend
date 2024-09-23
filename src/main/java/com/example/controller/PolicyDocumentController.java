@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3003", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3001", allowCredentials = "true")
 @RestController
 @RequestMapping("/policy-documents")
 public class PolicyDocumentController {
@@ -108,7 +108,7 @@ public class PolicyDocumentController {
         });
     }
 
-    private ResponseEntity<Object> createPolicyDocument(PolicyType policyType, MultipartFile file, Long userPolicyId, PolicyDocumentConsumer consumer) {
+    public ResponseEntity<Object> createPolicyDocument(PolicyType policyType, MultipartFile file, Long userPolicyId, PolicyDocumentConsumer consumer) {
         if (file.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

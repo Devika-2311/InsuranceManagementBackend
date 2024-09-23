@@ -15,7 +15,7 @@ class PolicyDocumentTest {
         LocalDate purchaseDate = LocalDate.of(2024, 6, 22);
         UserPolicy userPolicy = new UserPolicy(1L, 5000.0f, 12, 12000.0f, "Annual", 1, LocalDate.now(), LocalDate.now().plusYears(1), "Active", 5000.0f, new User(), new Policy());
         PolicyType policyType = PolicyType.HEALTH;
-        PolicyDocument policyDocument = new PolicyDocument(1L, userPolicy, policyType, 50000.0, true, "Jane Doe", "Spouse", "jane.doe@example.com", "ID123", 30, 170.0, 65.0, false, false, false, false, "None", "Healthy", "ModelX", "ABC123", 30000.0, "Personal", "Sedan", 25, "CheatSheet123", purchaseDate);
+        PolicyDocument policyDocument = new PolicyDocument(1L, userPolicy, policyType, 50000.0, true, "Jane Doe", "Spouse", "jane.doe@example.com", "ID123", 30, 170.0, 65.0, false, false, false, false, "None", "Healthy", "ModelX", "ABC123", 30000.0, "Personal", "Sedan", 25, "CheatSheet123");
 
         assertAll("PolicyDocument getters",
             () -> assertEquals(1L, policyDocument.getPolicyDetailsId()),
@@ -42,8 +42,8 @@ class PolicyDocumentTest {
             () -> assertEquals("Personal", policyDocument.getPrimaryUse()),
             () -> assertEquals("Sedan", policyDocument.getVehicleType()),
             () -> assertEquals(25, policyDocument.getDriverAge()),
-            () -> assertEquals("CheatSheet123", policyDocument.getCheatSheet()),
-            () -> assertEquals(purchaseDate, policyDocument.getPurchaseDate())
+            () -> assertEquals("CheatSheet123", policyDocument.getCheatSheet())
+   
         );
     }
 
@@ -78,8 +78,7 @@ class PolicyDocumentTest {
         policyDocument.setVehicleType("Truck");
         policyDocument.setDriverAge(30);
         policyDocument.setCheatSheet("CheatSheet456");
-        LocalDate purchaseDate = LocalDate.of(2023, 5, 20);
-        policyDocument.setPurchaseDate(purchaseDate);
+        
 
         assertEquals(1L, policyDocument.getPolicyDetailsId());
         assertEquals(userPolicy, policyDocument.getUserPolicy());
@@ -106,7 +105,6 @@ class PolicyDocumentTest {
         assertEquals("Truck", policyDocument.getVehicleType());
         assertEquals(30, policyDocument.getDriverAge());
         assertEquals("CheatSheet456", policyDocument.getCheatSheet());
-        assertEquals(purchaseDate, policyDocument.getPurchaseDate());
     }
 
     @Test
@@ -115,9 +113,9 @@ class PolicyDocumentTest {
         UserPolicy userPolicy = new UserPolicy(1L, 5000.0f, 12, 12000.0f, "Annual", 1, LocalDate.now(), LocalDate.now().plusYears(1), "Active", 5000.0f, new User(), new Policy());
         PolicyType policyType = PolicyType.HEALTH;
 
-        PolicyDocument policyDocument = new PolicyDocument(1L, userPolicy, policyType, 50000.0, true, "Jane Doe", "Spouse", "jane.doe@example.com", "ID123", 30, 170.0, 65.0, false, false, false, false, "None", "Healthy", "ModelX", "ABC123", 30000.0, "Personal", "Sedan", 25, "CheatSheet123", purchaseDate);
+        PolicyDocument policyDocument = new PolicyDocument(1L, userPolicy, policyType, 50000.0, true, "Jane Doe", "Spouse", "jane.doe@example.com", "ID123", 30, 170.0, 65.0, false, false, false, false, "None", "Healthy", "ModelX", "ABC123", 30000.0, "Personal", "Sedan", 25, "CheatSheet123");
 
-        String expectedString = "PolicyDocument [policyDetailsId=1, userPolicy=" + userPolicy.toString() + ", policyType=HEALTH, annualIncome=50000.0, anyDisease=true, nomineeName=Jane Doe, nomineeRelation=Spouse, nomineeEmail=jane.doe@example.com, nomineeProof=ID123, age=30, height=170.0, weight=65.0, smoke=false, alcohol=false, bp=false, diabetics=false, criticalDisease=None, healthReport=Healthy, vehicleModelNo=ModelX, licensePlateNo=ABC123, vehicleValue=30000.0, primaryUse=Personal, vehicleType=Sedan, driverAge=25, cheatSheet=CheatSheet123, purchaseDate=2024-06-22]";
+        String expectedString = "PolicyDocument [policyDetailsId=1, userPolicy=" + userPolicy.toString() + ", policyType=HEALTH, annualIncome=50000.0, anyDisease=true, nomineeName=Jane Doe, nomineeRelation=Spouse, nomineeEmail=jane.doe@example.com, nomineeProof=ID123, age=30, height=170.0, weight=65.0, smoke=false, alcohol=false, bp=false, diabetics=false, criticalDisease=None, healthReport=Healthy, vehicleModelNo=ModelX, licensePlateNo=ABC123, vehicleValue=30000.0, primaryUse=Personal, vehicleType=Sedan, driverAge=25, cheatSheet=CheatSheet123]";
 
         assertEquals(expectedString, policyDocument.toString());
     }

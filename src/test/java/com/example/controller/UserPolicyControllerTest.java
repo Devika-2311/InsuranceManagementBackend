@@ -29,17 +29,19 @@ public class UserPolicyControllerTest {
 
     @Test
     public void testCreateUserPolicy() {
-        UserPolicy userPolicy = new UserPolicy();
+    	UserPolicy userPolicy = new UserPolicy();
         userPolicy.setUserPolicyID(1L);
+        when(userPolicyService.createUserPolicy(any(UserPolicy.class))).thenReturn(userPolicy);
 
-        when(userPolicyService.createUserPolicy(userPolicy)).thenReturn(userPolicy);
+        ResponseEntity<Object> response = userPolicyController.createUserPolicy(userPolicy);
 
-        ResponseEntity<UserPolicy> response = userPolicyController.createUserPolicy(userPolicy);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertEquals(userPolicy, response.getBody());
+        assertEquals(userPolicy.getUserPolicyId(), response.getBody());
         verify(userPolicyService, times(1)).createUserPolicy(userPolicy);
     }
+   
+
 
     @Test
     public void testGetPoliciesById_UserFound() throws ResourceNotFoundException {
