@@ -36,6 +36,7 @@ public class PolicyController {
     public ResponseEntity<Policy> getPolicyById(@PathVariable Long policyId) {
         try {
             Policy policy = policyService.getPolicyById(policyId);
+            System.out.println("hello policy");
             return ResponseEntity.ok(policy);
         } catch (ResourceNotFoundException ex) {
             return ResponseEntity.notFound().build();
